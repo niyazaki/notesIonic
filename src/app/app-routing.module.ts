@@ -12,9 +12,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: 'categories/:id',
+    loadChildren: () => import('./pages/category-edit/category-edit.module').then( m => m.CategoryEditPageModule)
+  },  {
+    path: 'category-add',
+    loadChildren: () => import('./pages/category-add/category-add.module').then( m => m.CategoryAddPageModule)
+  },
+
+
 ];
 
 @NgModule({
