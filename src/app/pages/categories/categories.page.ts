@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LoadingController } from '@ionic/angular';
+import { CategoriesService} from '../../services/categories.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.page.html',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesPage implements OnInit {
 
-  constructor() { }
+  constructor(public api: CategoriesService, public loadingController: LoadingController) { }
+  
+  categories: any;
+
+  async getCategories() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+    await this.api.getCategory()
+      .subscribe(res => {
+        console.log(res);
+        this.categories = res;
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      });
+  }
+
+
+
 
   ngOnInit() {
+    this.getCategories();
   }
 
 }
