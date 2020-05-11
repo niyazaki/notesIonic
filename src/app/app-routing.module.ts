@@ -12,12 +12,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   },
   {
-    path: 'categories/:id',
-    loadChildren: () => import('./pages/category-edit/category-edit.module').then( m => m.CategoryEditPageModule)
-  },  {
-    path: 'category-add',
+    path: 'categories/add',
     loadChildren: () => import('./pages/category-add/category-add.module').then( m => m.CategoryAddPageModule)
   },
+  {
+    path: 'categories/:id',
+    loadChildren: () => import('./pages/category-edit/category-edit.module').then( m => m.CategoryEditPageModule)
+  },
+
 
 
 ];

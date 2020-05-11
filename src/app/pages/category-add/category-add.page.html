@@ -1,9 +1,30 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>category-add</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add category</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Add category</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-card>
+    <form [formGroup]="categoryForm">
+      <ion-item>
+        <ion-label position="floating">Name: </ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button shape="round" color="primary" [disabled]="!categoryForm.valid" routerLink="/categories"
+          (click)="newCategory()">Add</ion-button>
+        <ion-button shape="round" color="danger" routerLink="/categories">Cancel</ion-button>
+      </ion-item>
+    </form>
+  </ion-card>
 </ion-content>
