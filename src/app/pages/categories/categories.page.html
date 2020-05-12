@@ -10,13 +10,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-
-    <ion-item-sliding *ngFor="let ct of categories">
-      {{ct.name}}
+  <ion-list *ngFor="let ct of categories">
+    <ion-item-sliding>
+      <ion-item>
+        {{ct.name}}
+      </ion-item>
       <ion-item-options>
         <ion-icon name="build"></ion-icon>
-
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
