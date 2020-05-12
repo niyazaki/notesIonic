@@ -54,9 +54,8 @@ export class CategoriesService {
   }
 
   postCategory(data): Observable<any> {
-    const url = `${apiUrl}/add_with_students`;
     return this.http
-      .post(url, data, httpOptions)
+      .post(apiUrl, data, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
