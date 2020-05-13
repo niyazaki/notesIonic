@@ -1,19 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { LoadingController } from "@ionic/angular";
 import { NotesService } from "../../services/notes.service";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-notes",
   templateUrl: "./note-details.page.html",
   styleUrls: ["./note-details.page.scss"],
 })
 export class NoteDetailsPage implements OnInit {
-  constructor(
-    public api: NotesService,
-    public loadingController: LoadingController,
-    private route: ActivatedRoute,
-  ) {this.getNote(this.route.snapshot.paramMap.get('id'))}
-
   note: any;
 
   async getNote(id) {
@@ -38,5 +32,15 @@ export class NoteDetailsPage implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  constructor(
+    public api: NotesService,
+    public loadingController: LoadingController,
+    private route: ActivatedRoute
+  ) {
+    this.getNote(this.route.snapshot.paramMap.get("id"));
+  }
+
+  ngOnInit() {
+    this.getNote(this.route.snapshot.paramMap.get("id"));
+  }
 }

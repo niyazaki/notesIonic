@@ -13,7 +13,7 @@ export class NotesPage implements OnInit {
   ) {}
 
   notes: any;
-  note: any;
+  deletedMessage: any;
 
   async getNotes() {
     const loading = await this.loadingController.create();
@@ -37,7 +37,7 @@ export class NotesPage implements OnInit {
     await this.api.deleteNote(id).subscribe(
       (res) => {
         console.log(res);
-        this.note = res;
+        this.deletedMessage = res;
         loading.dismiss();
       },
       (err) => {
