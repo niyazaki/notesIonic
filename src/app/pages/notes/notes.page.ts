@@ -14,7 +14,6 @@ export class NotesPage implements OnInit {
 
   notes: any;
   deletedMessage: any;
-  note : any;
 
   async getNotes() {
     const loading = await this.loadingController.create();
@@ -24,9 +23,6 @@ export class NotesPage implements OnInit {
         console.log(res);
         this.notes = res;
         loading.dismiss();
-        this.note = {
-          title : "title"
-        }
       },
       (err) => {
         console.log(err);
