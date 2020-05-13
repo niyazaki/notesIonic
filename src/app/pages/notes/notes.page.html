@@ -19,7 +19,7 @@
       </ion-nav-link>
       <!-- If no item options, no issue with getting the updated data -->
       <ion-item-options side="end" (ionSwipe)="getNotes()">
-        <button routerLink="/notes/{{nt.id}}">
+        <button routerLink="/notes/{{nt.id}}/edit">
           <ion-icon name="build"></ion-icon>
         </button>
         <button (click)="deleteNote(nt.id)">
