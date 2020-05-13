@@ -40,7 +40,7 @@ export class NotesService {
     return body || {};
   }
 
-  getNote(): Observable<any> {
+  getNotes(): Observable<any> {
     return this.http
       .get(apiUrl, httpOptions)
       .pipe(map(this.extractData), catchError(this.handleError));

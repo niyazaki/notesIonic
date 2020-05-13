@@ -8,7 +8,12 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./note-details.page.scss"],
 })
 export class NoteDetailsPage implements OnInit {
-  note: any;
+  note = {
+    title: "Title",
+    content: "Content",
+    date: "Date",
+    category: "Category",
+  };
 
   async getNote(id) {
     const loading = await this.loadingController.create({
@@ -37,6 +42,10 @@ export class NoteDetailsPage implements OnInit {
     public loadingController: LoadingController,
     private route: ActivatedRoute
   ) {
+    this.getNote(this.route.snapshot.paramMap.get("id"));
+  }
+
+  ionViewWillEnter() {
     this.getNote(this.route.snapshot.paramMap.get("id"));
   }
 

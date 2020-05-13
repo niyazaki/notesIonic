@@ -14,15 +14,19 @@ export class NotesPage implements OnInit {
 
   notes: any;
   deletedMessage: any;
+  note : any;
 
   async getNotes() {
     const loading = await this.loadingController.create();
     await loading.present();
-    await this.api.getNote().subscribe(
+    await this.api.getNotes().subscribe(
       (res) => {
         console.log(res);
         this.notes = res;
         loading.dismiss();
+        this.note = {
+          title : "title"
+        }
       },
       (err) => {
         console.log(err);
@@ -45,6 +49,9 @@ export class NotesPage implements OnInit {
         loading.dismiss();
       }
     );
+    this.getNotes();
+  }
+  ionViewWillEnter(){
     this.getNotes();
   }
   ngOnInit() {

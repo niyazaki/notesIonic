@@ -16,7 +16,8 @@
         {{ct.name}}
       </ion-item>
       <!-- If no item options, no issue with getting the updated data -->
-      <ion-item-options side="end" (ionSwipe) = "getCategories()">
+      <!-- Fixed with ionViewWillEnter() -->
+      <ion-item-options side="end" >
         <button routerLink="/categories/{{ct.id}}">
           <ion-icon name="build"></ion-icon>
         </button>
