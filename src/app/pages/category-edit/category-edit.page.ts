@@ -31,6 +31,10 @@ export class CategoryEditPage implements OnInit {
       name: [null, Validators.required],
     });
   }
+  
+  redirect(){
+    this.router.navigate(["/categories"]);
+  }
 
   async editCategory() {
     const loading = await this.loadingController.create();
@@ -40,8 +44,8 @@ export class CategoryEditPage implements OnInit {
         this.route.snapshot.paramMap.get("id"),
         this.categoryForm.value
       )
-      .subscribe(
-        () => {
+      .subscribe(data =>
+        {
           loading.dismiss();
         },
         (err) => {
@@ -49,6 +53,29 @@ export class CategoryEditPage implements OnInit {
           loading.dismiss();
         }
       );
+    this.getCategories;
+    this.redirect();
   }
+
+
+  async getCategories() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+    await this.api.getCategory().subscribe(
+      (res) => {
+        loading.dismiss();
+      },
+      (err) => {
+        console.log(err);
+        loading.dismiss();
+      }
+    );
+  }
+
+
+
+
+
+
   ngOnInit() {}
 }

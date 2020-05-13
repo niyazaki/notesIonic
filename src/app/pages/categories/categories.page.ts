@@ -1,16 +1,23 @@
 import { Component, OnInit } from "@angular/core";
 import { LoadingController } from "@ionic/angular";
 import { CategoriesService } from "../../services/categories.service";
+import { ActivatedRoute, RouterModule } from '@angular/router';
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.page.html",
   styleUrls: ["./categories.page.scss"],
 })
+
 export class CategoriesPage implements OnInit {
   constructor(
+    public route : ActivatedRoute,
     public api: CategoriesService,
     public loadingController: LoadingController
-  ) {}
+  ) {
+    route.params.subscribe(val => {
+      this.getCategories;
+    })
+  }
 
   categories: any;
   category : any;

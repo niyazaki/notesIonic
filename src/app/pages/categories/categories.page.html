@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Categories
+      Categories List
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,8 @@
       <ion-item>
         {{ct.name}}
       </ion-item>
-      <ion-item-options side="end">
+      <!-- If no item options, no issue with getting the updated data -->
+      <ion-item-options side="end" (ionSwipe) = "getCategories()">
         <button routerLink="/categories/{{ct.id}}">
           <ion-icon name="build"></ion-icon>
         </button>
