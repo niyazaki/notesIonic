@@ -1,27 +1,27 @@
 import { Component, OnInit } from "@angular/core";
 import { LoadingController } from "@ionic/angular";
-import { CategoriesService } from "../../services/categories.service";
+import { NotesService } from "../../services/notes.service";
 @Component({
-  selector: "app-categories",
-  templateUrl: "./categories.page.html",
-  styleUrls: ["./categories.page.scss"],
+  selector: "app-notes",
+  templateUrl: "./notes.page.html",
+  styleUrls: ["./notes.page.scss"],
 })
-export class CategoriesPage implements OnInit {
+export class NotesPage implements OnInit {
   constructor(
-    public api: CategoriesService,
+    public api: NotesService,
     public loadingController: LoadingController
   ) {}
 
-  categories: any;
-  category : any;
+  notes: any;
+  note: any;
 
-  async getCategories() {
+  async getNotes() {
     const loading = await this.loadingController.create();
     await loading.present();
-    await this.api.getCategory().subscribe(
+    await this.api.getNote().subscribe(
       (res) => {
         console.log(res);
-        this.categories = res;
+        this.notes = res;
         loading.dismiss();
       },
       (err) => {
@@ -31,13 +31,13 @@ export class CategoriesPage implements OnInit {
     );
   }
 
-  async deleteCategory(id) {
+  async deleteNote(id) {
     const loading = await this.loadingController.create();
     await loading.present();
-    await this.api.deleteCategory(id).subscribe(
+    await this.api.deleteNote(id).subscribe(
       (res) => {
         console.log(res);
-        this.category = res;
+        this.note = res;
         loading.dismiss();
       },
       (err) => {
@@ -45,9 +45,9 @@ export class CategoriesPage implements OnInit {
         loading.dismiss();
       }
     );
-    this.getCategories();
+    this.getNotes();
   }
   ngOnInit() {
-    this.getCategories();
+    this.getNotes();
   }
 }
