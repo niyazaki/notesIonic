@@ -34,7 +34,7 @@ const routes: Routes = [
       import("./pages/notes/notes.module").then((m) => m.NotesPageModule),
   },
   {
-    path: "notes/:id",
+    path: "notes/:id/edit",
     loadChildren: () =>
       import("./pages/note-edit/note-edit.module").then(
         (m) => m.NoteEditPageModule
@@ -47,14 +47,21 @@ const routes: Routes = [
         (m) => m.NoteAddPageModule
       ),
   },
+  {
+    path: "notes/:id",
+    loadChildren: () =>
+      import("./pages/note-details/note-details.module").then(
+        (m) => m.NoteDetailsPageModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
-      onSameUrlNavigation: 'reload'
-  })
+      onSameUrlNavigation: "reload",
+    }),
   ],
   exports: [RouterModule],
 })

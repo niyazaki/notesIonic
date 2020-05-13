@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>notes</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Notes
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list *ngFor="let nt of notes">
+    <ion-item-sliding>
+      <ion-nav-link routerLink="/notes/{{nt.id}}">
+        <ion-item>
+          {{nt.title}}
+        </ion-item>
+      </ion-nav-link>
+      <!-- If no item options, no issue with getting the updated data -->
+      <ion-item-options side="end" (ionSwipe)="getNotes()">
+        <button routerLink="/notes/{{nt.id}}">
+          <ion-icon name="build"></ion-icon>
+        </button>
+        <button (click)="deleteNote(nt.id)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
