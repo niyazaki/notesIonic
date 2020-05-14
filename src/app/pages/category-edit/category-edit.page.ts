@@ -19,6 +19,7 @@ import {
 })
 export class CategoryEditPage implements OnInit {
   categoryForm: FormGroup;
+  category = {name : "Name"};
 
   constructor(
     public api: CategoriesService,
@@ -27,11 +28,31 @@ export class CategoryEditPage implements OnInit {
     public router: Router,
     private formBuilder: FormBuilder
   ) {
+    this.getCategory(this.route.snapshot.paramMap.get("id"));
     this.categoryForm = this.formBuilder.group({
       name: [null, Validators.required],
     });
   }
   
+  async getCategory(id) {
+    const loading = await this.loadingController.create({
+      message: "Loading",
+    });
+    await loading.present();
+    await this.api.getCategoryById(id).subscribe(
+      (data) => {
+        this.category = {
+          name: data.name,
+        };
+        loading.dismiss();
+      },
+      (err) => {
+        console.log(err);
+        loading.dismiss();
+      }
+    );
+  }
+
   redirect(){
     this.router.navigate(["/categories"]);
   }
@@ -53,29 +74,8 @@ export class CategoryEditPage implements OnInit {
           loading.dismiss();
         }
       );
-    this.getCategories;
     this.redirect();
   }
-
-
-  async getCategories() {
-    const loading = await this.loadingController.create();
-    await loading.present();
-    await this.api.getCategory().subscribe(
-      (res) => {
-        loading.dismiss();
-      },
-      (err) => {
-        console.log(err);
-        loading.dismiss();
-      }
-    );
-  }
-
-
-
-
-
 
   ngOnInit() {}
 }

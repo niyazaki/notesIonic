@@ -52,6 +52,7 @@ export class NoteAddPage implements OnInit {
   }
 
   async addNote() {
+    const loading = await this.loadingController.create();
     // The category input is a map inside another map. The split method is a good way to avoid dealing with this.
     this.category = this.noteForm.value.category.split("|");
     this.noteForm.value.category = {
@@ -61,10 +62,12 @@ export class NoteAddPage implements OnInit {
 
     await this.api.postNote(this.noteForm.value).subscribe(
       () => {
+        loading.dismiss();
         this.router.navigate(["/notes"]);
       },
       (err) => {
         console.log(err);
+        loading.dismiss();
       }
     );
   }

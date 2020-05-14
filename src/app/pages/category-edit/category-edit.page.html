@@ -18,7 +18,7 @@
     <form [formGroup]="categoryForm">
       <ion-item>
         <ion-label position="floating">Name: </ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
+        <ion-input type="text" formControlName="name" value= "{{category.name}}"></ion-input>
       </ion-item>
       <ion-item>
         <ion-button shape="round" color="primary" [disabled]="!categoryForm.valid" (click)="editCategory()">Update
