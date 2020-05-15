@@ -58,6 +58,7 @@ export class CategoriesPage implements OnInit {
   ionViewWillEnter(){
     this.getCategories();
   }
+  
   ngOnInit() {
     this.getCategories();
   }

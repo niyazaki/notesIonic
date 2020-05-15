@@ -10,8 +10,7 @@ import { catchError, tap, map } from "rxjs/operators";
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" }),
 };
-const apiUrl =
-  "http://laboweb.ecam.be/notepad_s4/public/index.php/api/notes";
+const apiUrl = "http://laboweb.ecam.be/notepad_s4/public/index.php/api/notes";
 
 @Injectable({
   providedIn: "root",

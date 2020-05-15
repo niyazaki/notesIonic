@@ -36,8 +36,7 @@ export class CategoryAddPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
     await this.api.postCategory(this.categoryForm.value).subscribe(
-      (res) => {
-        this.router.navigate(["/categories"]);
+      () => {
         loading.dismiss();
       },
       (err) => {
@@ -45,6 +44,7 @@ export class CategoryAddPage implements OnInit {
         loading.dismiss();
       }
     );
+    this.router.navigate(["/categories"]);
   }
 
   ngOnInit() {}

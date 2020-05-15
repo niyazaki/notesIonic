@@ -93,7 +93,7 @@ export class NoteEditPage implements OnInit {
     await this.api
       .updateNote(this.route.snapshot.paramMap.get("id"), this.noteForm.value)
       .subscribe(
-        (data) => {
+        () => {
           loading.dismiss();
         },
         (err) => {

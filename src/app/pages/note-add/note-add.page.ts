@@ -63,13 +63,13 @@ export class NoteAddPage implements OnInit {
     await this.api.postNote(this.noteForm.value).subscribe(
       () => {
         loading.dismiss();
-        this.router.navigate(["/notes"]);
       },
       (err) => {
         console.log(err);
         loading.dismiss();
       }
     );
+    this.router.navigate(["/notes"]);
   }
 
   ngOnInit() {}
